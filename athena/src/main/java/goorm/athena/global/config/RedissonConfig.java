@@ -16,8 +16,8 @@ public class RedissonConfig {
     @Value("${spring.redis.port}")
     private String redisPort;
 
-    @Value("${spring.redis.password}")
-    private String redisPassword;
+//    @Value("${spring.redis.password}")
+//    private String redisPassword;
 
     @Bean(destroyMethod = "shutdown")
     // 기본 커넥션 수 기본값 : 10,000
@@ -25,14 +25,16 @@ public class RedissonConfig {
         Config config = new Config();
         config.useSingleServer()
                 .setAddress("redis://" + redisHost + ":" + redisPort)
-                .setPassword(redisPassword)
+//                .setPassword(redisPassword)
 //                 기본값
-//                .setConnectionPoolSize(64)
-//                .setConnectionMinimumIdleSize(24)
+                .setConnectionPoolSize(500)
+                .setConnectionMinimumIdleSize(100)
                 .setTimeout(10000)
                 .setConnectTimeout(10000)
                 .setRetryAttempts(3)
                 .setRetryInterval(1500);
+
+        config.setNettyThreads(16);
         return Redisson.create(config);
     }
 }
