@@ -44,7 +44,7 @@ public class AsyncConfig {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(64);
         executor.setMaxPoolSize(256);
-        executor.setQueueCapacity(3800);
+        executor.setQueueCapacity(4000);
         executor.setThreadNamePrefix("UserCouponAsync-");
 
         executor.initialize();

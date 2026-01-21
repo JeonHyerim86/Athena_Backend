@@ -1,4 +1,4 @@
-package goorm.athena.domain.userCoupon.infra;
+package goorm.athena.domain.userCoupon.infra.redis;
 
 import goorm.athena.global.exception.CustomException;
 import goorm.athena.global.exception.ErrorCode;

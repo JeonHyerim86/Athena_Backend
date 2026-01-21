@@ -29,6 +29,7 @@ public class UserCouponControllerImpl implements UserCouponController {
     private final UserCouponCommandServiceV4_4 userCouponCommandServiceV4_4;
     private final UserCouponCommandServiceV4_5 userCouponCommandServiceV4_5;
     private final UserCouponCommandServiceV4_6 userCouponCommandServiceV4_6;
+    private final UserCouponCommandServiceV5 userCouponCommandServiceV5;
 
     private final UserCouponScheduler userCouponScheduler;
     private final NotificationService notificationService;
@@ -156,6 +157,14 @@ public class UserCouponControllerImpl implements UserCouponController {
     public ResponseEntity<UserCouponIssueResponse> issueCouponWithLuaAndStockAsync8(@CheckLogin LoginUserRequest loginUserRequest,
                                                                                    @RequestBody UserCouponIssueRequest request){
         userCouponCommandServiceV4_6.issueCoupon(loginUserRequest.userId(), request);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/v5")
+    public ResponseEntity<UserCouponIssueResponse> issueCouponWithKafka(@CheckLogin LoginUserRequest loginUserRequest,
+                                                                                    @RequestBody UserCouponIssueRequest request){
+        userCouponCommandServiceV5.issueCoupon(loginUserRequest.userId(), request);
 
         return ResponseEntity.noContent().build();
     }

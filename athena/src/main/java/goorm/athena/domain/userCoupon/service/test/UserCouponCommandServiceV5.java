@@ -3,6 +3,8 @@ package goorm.athena.domain.userCoupon.service.test;
 import goorm.athena.domain.userCoupon.dto.req.UserCouponIssueRequest;
 import goorm.athena.domain.userCoupon.event.UserCouponIssueEvent;
 import goorm.athena.domain.coupon.event.CouponSyncTriggerEvent;
+import goorm.athena.domain.userCoupon.event.message.UserCouponIssueMessage;
+import goorm.athena.domain.userCoupon.infra.kafka.producer.UserCouponIssueProducer;
 import goorm.athena.domain.userCoupon.infra.redis.UserCouponStockOperation;
 import goorm.athena.global.exception.CustomException;
 import goorm.athena.global.exception.ErrorCode;
@@ -18,10 +20,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class UserCouponCommandServiceV4_6 {
+public class UserCouponCommandServiceV5 {
 
     private final ApplicationEventPublisher eventPublisher;
     private final UserCouponStockOperation userCouponStockOperation;
+    private final UserCouponIssueProducer userCouponIssueProducer;
 
     public void issueCoupon(Long userId, UserCouponIssueRequest request) {
         Long couponId = request.couponId();
@@ -38,7 +41,8 @@ public class UserCouponCommandServiceV4_6 {
         luaResult = userCouponStockOperation.checkAndDecreaseRedisStock(couponId);
 
         // 4. 이벤트 발행 (비동기 알림, 상태 동기화 등)
-        eventPublisher.publishEvent(new UserCouponIssueEvent(userId, couponId, luaResult));
+        UserCouponIssueMessage message = new UserCouponIssueMessage(userId, couponId, luaResult);
+        userCouponIssueProducer.send(message);
 
         // 5. 재고 소진 플래그 감지 시 동기화 이벤트 발행
         if (luaResult == 2) {

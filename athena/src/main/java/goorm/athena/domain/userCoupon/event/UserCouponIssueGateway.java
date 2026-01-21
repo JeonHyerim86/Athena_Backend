@@ -1,7 +1,7 @@
 package goorm.athena.domain.userCoupon.event;
 
 import goorm.athena.domain.coupon.event.CouponRollbackEvent;
-import goorm.athena.domain.userCoupon.infra.UserCouponStockOperation;
+import goorm.athena.domain.userCoupon.infra.redis.UserCouponStockOperation;
 import goorm.athena.domain.userCoupon.service.UserCouponCommandService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

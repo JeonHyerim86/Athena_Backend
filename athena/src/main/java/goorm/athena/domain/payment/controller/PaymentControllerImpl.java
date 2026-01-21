@@ -1,6 +1,5 @@
 package goorm.athena.domain.payment.controller;
 
-import goorm.athena.domain.notification.service.FcmNotificationService;
 import goorm.athena.domain.order.service.OrderQueryService;
 import goorm.athena.domain.payment.dto.HtmlTemplates;
 import goorm.athena.domain.payment.dto.res.KakaoPayApproveResponse;

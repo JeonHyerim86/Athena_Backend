@@ -1,4 +1,4 @@
-package goorm.athena.domain.userCoupon.infra;
+package goorm.athena.domain.userCoupon.infra.redis;
 
 import goorm.athena.domain.coupon.event.CouponSyncTriggerEvent;
 import lombok.RequiredArgsConstructor;
