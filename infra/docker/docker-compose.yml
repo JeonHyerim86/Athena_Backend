@@ -1,26 +1,26 @@
 version: "3.8"
 
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_DATABASE: athena
-      MYSQL_USER: ${DATABASE_USERNAME}
-      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
-    ports:
-      - "3306:3306" # 호스트:컨테이너 포트 매핑
-    volumes:
-      - mysql_data:/var/lib/mysql # 데이터 영속성을 위한 볼륨
-    networks:
-      - backend_network
-    command:
-      # MySQL 8.0의 기본 인증 방식 변경
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_unicode_ci
-      - --default-authentication-plugin=mysql_native_password
+  # mysql:
+  #   image: mysql:8.0
+  #   container_name: mysql
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+  #     MYSQL_DATABASE: athena
+  #     MYSQL_USER: ${DATABASE_USERNAME}
+  #     MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+  #   ports:
+  #     - "3306:3306" # 호스트:컨테이너 포트 매핑
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql # 데이터 영속성을 위한 볼륨
+  #   networks:
+  #     - backend_network
+  #   command:
+  #     # MySQL 8.0의 기본 인증 방식 변경
+  #     - --character-set-server=utf8mb4
+  #     - --collation-server=utf8mb4_unicode_ci
+  #     - --default-authentication-plugin=mysql_native_password
       
   redis:
     image: redis:latest
@@ -29,7 +29,7 @@ services:
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
     ports:
-      - "6379:6379"
+      - "6380:6380"
     networks:
       - backend_network
     volumes:
