@@ -1,5 +1,6 @@
 package goorm.athena.domain.userCoupon.service;
 
+import goorm.athena.domain.coupon.entity.Coupon;
 import goorm.athena.domain.coupon.service.CouponQueryService;
 import goorm.athena.domain.user.entity.User;
 import goorm.athena.domain.user.service.UserQueryService;
@@ -36,6 +37,12 @@ public class UserCouponQueryService {
     @Transactional(readOnly = true)
     public UserCouponCursorResponse getUserCoupons(Long userId, Long cursorId, int size){
         return userCouponQueryRepository.getUserCouponByCursor(userId, cursorId, size);
+    }
+
+    public boolean existsByUserIdAndCouponId(Long userId, Long couponId){
+        User user = userQueryService.getUser(userId);
+        Coupon coupon = couponQueryService.getCoupon(couponId);
+        return userCouponRepository.existsByUserAndCoupon(user, coupon);
     }
 
     public String getCouponTitle(Long couponId){

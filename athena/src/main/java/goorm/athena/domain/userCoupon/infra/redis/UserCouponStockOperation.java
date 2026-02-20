@@ -1,8 +1,12 @@
 package goorm.athena.domain.userCoupon.infra.redis;
 
+import goorm.athena.domain.user.entity.User;
+import goorm.athena.domain.userCoupon.repository.UserCouponRepository;
+import goorm.athena.domain.userCoupon.service.UserCouponQueryService;
 import goorm.athena.global.exception.CustomException;
 import goorm.athena.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RMap;
 import org.redisson.api.RScript;
 import org.redisson.api.RSet;
@@ -17,9 +21,11 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class UserCouponStockOperation {
 
     private final RedissonClient redissonClient;
+    private final UserCouponQueryService userCouponQueryService;
 
     private static final String LUA_SCRIPT = """
         local metaKey = KEYS[1]
@@ -110,7 +116,25 @@ public class UserCouponStockOperation {
     public boolean addUserToIssuedSet(Long couponId, Long userId) {
         String key = "issued_users_" + couponId;
         RSet<String> issuedSet = redissonClient.getSet(key, StringCodec.INSTANCE);
-        return issuedSet.add(String.valueOf(userId));
+
+        try{
+            boolean isNewInRedis = issuedSet.add(String.valueOf(userId));
+
+            // Redis에 데이터가 있다면 중복
+            if(!isNewInRedis){
+                return false;
+            }
+
+            if(userCouponQueryService.existsByUserIdAndCouponId(userId, couponId)){
+                return false;
+            }
+
+            return true;
+        } catch (Exception e){
+            log.error("Redis 장애 발생 - DB 직접 검증: couponId={}, userId={}", couponId, userId);
+            // Redis 서버가 죽었을 경우 DB로 쿠폰 검증
+            return !userCouponQueryService.existsByUserIdAndCouponId(userId, couponId);
+        }
     }
 
     public void removeUserFromIssuedSet(Long couponId, Long userId) {
