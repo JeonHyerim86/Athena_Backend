@@ -28,6 +28,13 @@
 
 💳 **주문 및 결제**  
 > 후원 방식으로 주문을 생성하고 결제를 완료합니다.
+> <br>
+> **성능 개선**
+> <br> 🔗 [1. 동기 처리 방식 → 이벤트 기반 비동기 구조 개선](https://github.com/team-2percent/Athena_Backend/wiki/%5B%EC%84%B1%EB%8A%A5%EA%B0%9C%EC%84%A0%5D-%EC%A3%BC%EB%AC%B8,%EA%B2%B0%EC%A0%9C-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B0%9C%EC%84%A0-%E2%80%90-1.-%EB%8F%99%EA%B8%B0-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EC%8B%9D%E2%80%90---%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EA%B8%B0%EB%B0%98-%EB%B9%84%EB%8F%99%EA%B8%B0-%EA%B5%AC%EC%A1%B0-%EA%B0%9C%EC%84%A0)
+> <br>
+> **트러블 슈팅**
+> <br> 🛠️ [재고차감 데드락 문제 해결 ‐ 1 (Lock 기반)](https://github.com/team-2percent/Athena_Backend/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85-1%5D-%EA%B2%B0%EC%A0%9C-%EC%9E%AC%EA%B3%A0%EC%B0%A8%EA%B0%90-%EB%A1%9C%EC%A7%81-%E2%80%90-2.-%EB%8D%B0%EB%93%9C%EB%9D%BD-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0-%EA%B3%BC%EC%A0%95(lock-%EA%B8%B0%EB%B0%98))
+> <br> 🛠️ [재고차감 데드락 문제 해결 ‐ 2](https://github.com/team-2percent/Athena_Backend/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85-2%5D-%EA%B2%B0%EC%A0%9C-%EC%9E%AC%EA%B3%A0%EC%B0%A8%EA%B0%90-%EB%A1%9C%EC%A7%81-%E2%80%90-2.-%EB%8D%B0%EB%93%9C%EB%9D%BD-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0-%EA%B3%BC%EC%A0%95)
 
 🎟️ **선착순 쿠폰 발급**  
 > 관리자가 지정한 수량과 조건에 따라, 사용자에게 자동으로 쿠폰이 발급됩니다.
