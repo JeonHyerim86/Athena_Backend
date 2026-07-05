@@ -39,7 +39,19 @@
 > <br> 📈 [성능 비교 그래프 및 쿠폰 발급 아키텍처 보기](https://github.com/team-2percent/Athena_Backend/wiki/%5B%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0%5D-%EC%BF%A0%ED%8F%B0-%EB%B0%9C%EA%B8%89-%EA%B0%9C%EC%84%A0-%E2%80%90-%EC%84%B1%EB%8A%A5-%EB%B9%84%EA%B5%90-%EB%B0%8F-%EC%BF%A0%ED%8F%B0-%EB%B0%9C%EA%B8%89-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98)
 
 📩 **알림 시스템**  
-> 주문, 쿠폰 발급 등 주요 이벤트 발생 시, 사용자에게 실시간 알림을 전송합니다.
+> 주문, 쿠폰 발급, 후기 등록 등 주요 이벤트 발생 시, 사용자에게 FCM 기반 실시간 알림을 전송합니다.
+> <br>
+> **성능 개선**
+> <br> 🔗 [1. 이벤트 기반 구조 개선](https://github.com/team-2percent/Athena_Backend/wiki/%5B%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0%5D-%EC%95%8C%EB%A6%BC-%E2%80%90-1.-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EA%B8%B0%EB%B0%98-%EA%B5%AC%EC%A1%B0-%EA%B0%9C%EC%84%A0)
+> <br> 🔗 [2. 동기 발송 부하 테스트와 FCM 429 한계](https://github.com/team-2percent/Athena_Backend/wiki/%5B%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0%5D-%EC%95%8C%EB%A6%BC-%E2%80%90-2.-%EB%8F%99%EA%B8%B0-%EB%B0%9C%EC%86%A1-%EB%B6%80%ED%95%98-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80-FCM-429-%ED%95%9C%EA%B3%84)
+> <br> 🔗 [3. sendAsync 기반 논블로킹 전환](https://github.com/team-2percent/Athena_Backend/wiki/%5B%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0%5D-%EC%95%8C%EB%A6%BC-%E2%80%90-3.-sendAsync-%EA%B8%B0%EB%B0%98-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9-%EC%A0%84%ED%99%98)
+> <br> 🔗 [4. @Async 도입과 스레드 풀 병목 분석](https://github.com/team-2percent/Athena_Backend/wiki/%5B%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0%5D-%EC%95%8C%EB%A6%BC-%E2%80%90-4.-%40Async-%EB%8F%84%EC%9E%85%EA%B3%BC-%EC%8A%A4%EB%A0%88%EB%93%9C-%ED%92%80-%EB%B3%91%EB%AA%A9-%EB%B6%84%EC%84%9D)
+> <br> 🔗 [5. 커스텀 TaskExecutor 튜닝](https://github.com/team-2percent/Athena_Backend/wiki/%5B%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0%5D-%EC%95%8C%EB%A6%BC-%E2%80%90-5.-%EC%BB%A4%EC%8A%A4%ED%85%80-TaskExecutor-%ED%8A%9C%EB%8B%9D)
+> <br> 🔗 [6. 서버 환경 검증과 남은 과제](https://github.com/team-2percent/Athena_Backend/wiki/%5B%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0%5D-%EC%95%8C%EB%A6%BC-%E2%80%90-6.-%EC%84%9C%EB%B2%84-%ED%99%98%EA%B2%BD-%EA%B2%80%EC%A6%9D%EA%B3%BC-%EB%82%A8%EC%9D%80-%EA%B3%BC%EC%A0%9C)
+> <br>
+> **트러블 슈팅**
+> <br> 🛠️ [스레드 과잉 생성으로 인한 서버 다운](https://github.com/team-2percent/Athena_Backend/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85%5D-%EC%95%8C%EB%A6%BC-%E2%80%90-%EC%8A%A4%EB%A0%88%EB%93%9C-%EA%B3%BC%EC%9E%89-%EC%83%9D%EC%84%B1%EC%9C%BC%EB%A1%9C-%EC%9D%B8%ED%95%9C-%EC%84%9C%EB%B2%84-%EB%8B%A4%EC%9A%B4)
+> <br> 🛠️ [로컬은 통과하는데 서버에서만 터지는 부하 테스트](https://github.com/team-2percent/Athena_Backend/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85%5D-%EC%95%8C%EB%A6%BC-%E2%80%90-%EB%A1%9C%EC%BB%AC%EC%9D%80-%ED%86%B5%EA%B3%BC%ED%95%98%EB%8A%94%EB%8D%B0-%EC%84%9C%EB%B2%84%EC%97%90%EC%84%9C%EB%A7%8C-%ED%84%B0%EC%A7%80%EB%8A%94-%EB%B6%80%ED%95%98-%ED%85%8C%EC%8A%A4%ED%8A%B8)
 
 🔍 **프로젝트 검색**  
 > 키워드, 카테고리  등을 활용한 프로젝트 탐색이 가능합니다.
